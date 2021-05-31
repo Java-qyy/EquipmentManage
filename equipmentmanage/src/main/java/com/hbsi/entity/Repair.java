@@ -7,21 +7,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 public class Repair {
     @TableId
     public int rid;
-    public int eid;
+    public Equipment equipment;
     public int ecount;
     public double rmoney;
     public int rstate;
-
-    @Override
-    public String toString() {
-        return "Repair{" +
-                "rid=" + rid +
-                ", eid=" + eid +
-                ", ecount=" + ecount +
-                ", rmoney=" + rmoney +
-                ", rstate=" + rstate +
-                '}';
-    }
 
     public int getRid() {
         return rid;
@@ -31,12 +20,12 @@ public class Repair {
         this.rid = rid;
     }
 
-    public int getEid() {
-        return eid;
+    public Equipment getEquipment() {
+        return equipment;
     }
 
-    public void setEid(int eid) {
-        this.eid = eid;
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
     }
 
     public int getEcount() {

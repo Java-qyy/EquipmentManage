@@ -1,26 +1,16 @@
 package com.hbsi.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import sun.security.krb5.internal.crypto.EType;
 
 public class Equipment {
     @TableId
     public int eid;
     public String ename;
-    public int etid;
+    public EType eType;
     public double eprice;
     public int ecount;
 
-
-    @Override
-    public String toString() {
-        return "Equipment{" +
-                "eid=" + eid +
-                ", ename='" + ename + '\'' +
-                ", etid=" + etid +
-                ", eprice=" + eprice +
-                ", ecount=" + ecount +
-                '}';
-    }
 
     public int getEid() {
         return eid;
@@ -38,12 +28,12 @@ public class Equipment {
         this.ename = ename;
     }
 
-    public int getEtid() {
-        return etid;
+    public EType geteType() {
+        return eType;
     }
 
-    public void setEtid(int etid) {
-        this.etid = etid;
+    public void seteType(EType eType) {
+        this.eType = eType;
     }
 
     public double getEprice() {
