@@ -26,4 +26,8 @@ public class ScrapService {
         List<Scrap> scraps = scrapDao.findAll("%"+page.getQueryString()+"%");
         return scraps;
     }
+
+    public int add(Integer eid, Integer ecount) {
+        return scrapDao.add(eid,ecount);
+    }
 }
