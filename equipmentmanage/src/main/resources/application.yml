@@ -11,8 +11,22 @@ spring:
     host: localhost
 
 
+  mail:
+    host: smtp.qq.com
+    username: 1035117515@qq.com
+    password: siajjhfnmlhjbeah
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+
+
+
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:mappers/*xml
   type-aliases-package: com.hbsi.entity
+
+
+
+
