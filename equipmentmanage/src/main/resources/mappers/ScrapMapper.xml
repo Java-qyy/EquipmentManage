@@ -16,9 +16,9 @@
     </resultMap>
 
     <select id="findAll" resultMap="scrapResultMap" parameterType="string">
-        SELECT `repair`.*,equipment.* FROM `repair` LEFT JOIN equipment ON equipment.eid = `repair`.eid WHERE `repair`.rstate = 1
+        SELECT scrap.*,equipment.* FROM scrap Left JOIN equipment ON equipment.eid = scrap.eid
         <if test="ename != null and ename.length > 0">
-            AND equipment.ename LIKE #{ename}
+            where equipment.ename LIKE #{ename}
         </if>
     </select>
 

@@ -6,6 +6,7 @@ import com.hbsi.entity.Page;
 import com.hbsi.entity.Scrap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -17,8 +18,12 @@ public class ScrapService {
 
     public List<Scrap> findAll(Page page) {
 
+        if (!StringUtils.hasText(page.getQueryString())){
+            page.setQueryString("");
+        }
+
         PageHelper.startPage(page.getPage(), page.getSize());
-        List<Scrap> scraps = scrapDao.findAll(page.getQueryString());
+        List<Scrap> scraps = scrapDao.findAll("%"+page.getQueryString()+"%");
         return scraps;
     }
 }
