@@ -13,6 +13,17 @@ public class Repair {
     public double rmoney;
     public int rstate;
 
+    @Override
+    public String toString() {
+        return "Repair{" +
+                "rid=" + rid +
+                ", equipment=" + equipment +
+                ", ecount=" + ecount +
+                ", rmoney=" + rmoney +
+                ", rstate=" + rstate +
+                '}';
+    }
+
     public int getRid() {
         return rid;
     }

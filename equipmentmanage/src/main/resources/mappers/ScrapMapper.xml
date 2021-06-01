@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.hbsi.dao.ScrapDao">
+
+    <resultMap id="scrapResultMap" type="Scrap" >
+        <id column="sid" property="sid"/>
+        <result column="ecount" property="ecount"/>
+        <association property="equipment"  javaType="Equipment">
+            <result column="eid" property="eid"/>
+            <result column="ename" property="ename"/>
+            <result column="eprice" property="eprice"/>
+            <result column="ecount" property="ecount"/>
+        </association>
+    </resultMap>
+
+    <select id="findAll" resultMap="repairResultMap" parameterType="string">
+        SELECT `repair`.*,equipment.* FROM `repair` LEFT JOIN equipment ON equipment.eid = `repair`.eid WHERE `repair`.rstate = 1
+        <if test="ename != null and ename.length > 0">
+            AND equipment.ename LIKE #{ename}
+        </if>
+    </select>
+
+
+</mapper>

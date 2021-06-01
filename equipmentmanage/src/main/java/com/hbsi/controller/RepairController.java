@@ -7,6 +7,7 @@ import com.hbsi.service.RepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -53,12 +54,15 @@ public class RepairController {
      * 维修指定器材
      * @return
      */
-    public Map<String,Object> repairEquipment(Integer rid,Integer eid,Integer ecount){
-
+    @RequestMapping("/repair")
+    public Map<String,Object> repairEquipment(
+            @RequestParam(required = true) Integer rid,
+            @RequestParam(required = true) Integer eid,
+            @RequestParam(required = true) Integer ecount){
         Map<String,Object> map = new HashMap<>();
 
         try {
-            List<Repair> repairs = repairService.repairEquipment(rid,eid,ecount);
+            repairService.repairEquipment(rid,eid,ecount);
             map.put("flag",true);
             map.put("msg","维修成功");
             return map;

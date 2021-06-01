@@ -1,5 +1,6 @@
 package com.hbsi.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import sun.security.krb5.internal.crypto.EType;
 
@@ -7,7 +8,8 @@ public class Equipment {
     @TableId
     public int eid;
     public String ename;
-    public EType eType;
+    @TableField(exist = false)
+    public EquipmentType equipmentType;
     public double eprice;
     public int ecount;
 
