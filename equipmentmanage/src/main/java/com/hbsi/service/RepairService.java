@@ -19,16 +19,11 @@ public class RepairService {
     RepairDao repairDao;
 
     public List<Repair> findAll(Page page) {
-        QueryWrapper<Repair> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("rstate",1);
-
-        if (StringUtils.hasText(page.getQueryString())){//如果有查询条件则添加查询条件
-            queryWrapper.like("eid",page.getQueryString());
+        if (!StringUtils.hasText(page.getQueryString())){
+            page.setQueryString("");
         }
-
-
         PageHelper.startPage(page.getPage(),page.getSize());
-        List<Repair> repairs = repairDao.selectList(queryWrapper);
+        List<Repair> repairs = repairDao.findAll("%"+page.getQueryString()+"%");
         return repairs;
     }
 

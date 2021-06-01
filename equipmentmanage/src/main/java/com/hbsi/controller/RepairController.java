@@ -27,6 +27,7 @@ public class RepairController {
      * 分页查询全部的维修记录
      * @return
      */
+    @RequestMapping("/all")
     public Map<String,Object> findAll(@RequestBody Page page){
 
         Map<String,Object> map = new HashMap<>();

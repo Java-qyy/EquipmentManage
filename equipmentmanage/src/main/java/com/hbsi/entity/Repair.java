@@ -2,8 +2,9 @@ package com.hbsi.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
-
+@TableName(value = "repair",resultMap = "repairResultMap")
 public class Repair {
     @TableId
     public int rid;
