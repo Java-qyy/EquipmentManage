@@ -30,12 +30,12 @@ public class Equipment {
         this.ename = ename;
     }
 
-    public EType geteType() {
-        return eType;
+    public EquipmentType getEquipmentType() {
+        return equipmentType;
     }
 
-    public void seteType(EType eType) {
-        this.eType = eType;
+    public void setEquipmentType(EquipmentType equipmentType) {
+        this.equipmentType = equipmentType;
     }
 
     public double getEprice() {
