@@ -68,4 +68,8 @@ public class RepairService {
         System.out.println(equipment);
         equipmentDao.updateById(equipment);
     }
+
+    public int add(Integer eid, Integer ecount, double rmoney) {
+        return repairDao.add(eid,ecount,rmoney);
+    }
 }
