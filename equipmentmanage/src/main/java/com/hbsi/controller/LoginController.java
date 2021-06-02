@@ -80,4 +80,33 @@ public class LoginController {
     }
 
 
+
+
+    @RequestMapping(value = "/login/token")
+    public Map<String,Object> notoken(String username,String token){
+
+        Map<String,Object> map = new HashMap<>();
+        if(token == null || username == null || token.equals("") || username.equals("")){
+            map.put("msg","身份验证有误，请重新登陆");
+            map.put("flag",false);
+            return map;
+        }
+        String redistoken = redisTemplate.opsForValue().get(username+"token");
+        if(redistoken == null || redistoken.equals("")){
+            map.put("msg","身份验证有误，请重新登陆");
+            map.put("flag",false);
+            return map;
+        }
+        if(redistoken.equals(token)){
+
+            map.put("flag",true);
+           return map;
+        }
+        map.put("msg","身份验证有误，请重新登陆");
+        map.put("flag",false);
+        return map;
+    }
+
+
+
 }
