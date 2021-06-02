@@ -72,4 +72,13 @@ public class RepairService {
     public int add(Integer eid, Integer ecount, double rmoney) {
         return repairDao.add(eid,ecount,rmoney);
     }
+
+    public List<Repair> findAlAll(Page page) {
+        if (!StringUtils.hasText(page.getQueryString())){
+            page.setQueryString("");
+        }
+        PageHelper.startPage(page.getPage(),page.getSize());
+        List<Repair> repairs = repairDao.findAlAll("%"+page.getQueryString()+"%");
+        return repairs;
+    }
 }

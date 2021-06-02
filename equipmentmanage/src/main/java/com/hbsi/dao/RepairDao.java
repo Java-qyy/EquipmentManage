@@ -13,4 +13,6 @@ public interface RepairDao extends BaseMapper<Repair>{
 
     @Insert(value = {"insert into `repair` values(0,#{eid},#{ecount},#{rmoney},1)"})
     int add(Integer eid, Integer ecount, double rmoney);
+
+    List<Repair> findAlAll(String s);
 }

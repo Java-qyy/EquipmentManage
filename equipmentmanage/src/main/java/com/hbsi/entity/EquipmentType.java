@@ -1,7 +1,9 @@
 package com.hbsi.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
+@TableName("equipmenttype")
 public class EquipmentType {
     @TableId
     public int etid;
@@ -10,7 +12,7 @@ public class EquipmentType {
 
     @Override
     public String toString() {
-        return "EquipmentType{" +
+        return "EquipmentTypeController{" +
                 "etid=" + etid +
                 ", etname='" + etname + '\'' +
                 '}';

@@ -1,10 +1,12 @@
 package com.hbsi.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 public class Scrap {
     @TableId
     public int sid;
+    @TableField(exist = false)
     public Equipment equipment;
     public int ecount;
 

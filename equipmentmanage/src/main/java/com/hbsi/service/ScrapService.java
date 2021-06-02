@@ -1,5 +1,6 @@
 package com.hbsi.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.hbsi.dao.ScrapDao;
 import com.hbsi.entity.Page;
@@ -28,6 +29,14 @@ public class ScrapService {
     }
 
     public int add(Integer eid, Integer ecount) {
-        return scrapDao.add(eid,ecount);
+        QueryWrapper<Scrap> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("eid",eid);
+        Scrap scrap = scrapDao.selectOne(queryWrapper);
+        if(scrap == null){
+            return scrapDao.add(eid,ecount);
+        }
+        scrap.setEcount(scrap.getEcount()+ecount);
+//        scrapDao.update(scrap,null);
+        return scrapDao.updateById(scrap);
     }
 }

@@ -71,4 +71,31 @@ public class RepairController {
             return map;
         }
     }
+
+
+
+
+    @RequestMapping("/Alall")
+    public Map<String,Object> findAlAll(@RequestBody Page page){
+
+        Map<String,Object> map = new HashMap<>();
+
+        try {
+            List<Repair> repairs = repairService.findAlAll(page);
+
+            PageInfo pageInfo = new PageInfo(repairs);
+            map.put("data",pageInfo.getList());
+            map.put("total",pageInfo.getTotal());
+            map.put("msg","查询成功");
+            map.put("flag",true);
+            return map;
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("flag",false);
+            map.put("msg","查询失败");
+            return map;
+        }
+    }
+
+
 }

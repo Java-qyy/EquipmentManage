@@ -26,4 +26,10 @@
     </select>
 
 
+    <select id="findAlAll" resultMap="repairResultMap" parameterType="string">
+        SELECT `repair`.*,equipment.* FROM `repair` LEFT JOIN equipment ON equipment.eid = `repair`.eid WHERE `repair`.rstate = 0
+        <if test="ename != null and ename.length > 0">
+            AND equipment.ename LIKE #{ename}
+        </if>
+    </select>
 </mapper>

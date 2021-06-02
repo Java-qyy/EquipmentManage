@@ -1,12 +1,16 @@
 package com.hbsi.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.github.pagehelper.PageInfo;
 import com.hbsi.entity.Equipment;
 import com.hbsi.entity.EquipmentType;
 import com.hbsi.entity.Page;
+import com.hbsi.entity.Scrap;
 import com.hbsi.service.EquipmentService;
 import com.hbsi.service.RepairService;
 import com.hbsi.service.ScrapService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class EquipmentController {
 
     @Autowired
@@ -35,15 +40,24 @@ public class EquipmentController {
     public Map<String,Object> findAll(@RequestBody Page page){
 
         List<Equipment> list = equipmentService.findAll(page);
+        PageInfo pageInfo = new PageInfo(list);
         Map<String,Object> map = new HashMap<>();
         map.put("msg","查询成功");
         map.put("flag",true);
+        map.put("total",pageInfo.getTotal());
         map.put("data",list);
         return map;
     }
 
 
-
+    /**
+     * 器具添加
+     * @param name
+     * @param etid
+     * @param eprice
+     * @param ecount
+     * @return
+     */
     @RequestMapping(value = "/equipment/add")
     public Map<String,Object> add(String name, Integer etid, double eprice, Integer ecount){
         Map<String,Object> map = new HashMap<>();
@@ -59,6 +73,14 @@ public class EquipmentController {
         }
     }
 
+
+    /**
+     * 添加到维修
+     * @param eid
+     * @param ecount
+     * @param rmoney
+     * @return
+     */
     @RequestMapping(value = "/equipment/repair")
     public Map<String,Object> add(Integer eid, Integer ecount, double rmoney){
         Map<String,Object> map = new HashMap<>();
@@ -83,9 +105,15 @@ public class EquipmentController {
     }
 
 
-
+    /**
+     * 添加到报废
+     * @param eid
+     * @param ecount
+     * @return
+     */
     @RequestMapping(value = "/equipment/scrap")
     public Map<String,Object> addScrap(Integer eid, Integer ecount){
+
         Map<String,Object> map = new HashMap<>();
         int no = scrapService.add(eid,ecount);
         if(no!=0){
