@@ -17,10 +17,8 @@
     </resultMap>
 
     <select id="findAll" resultMap="EquipmentMap" parameterType="string">
-        SELECT `equipment`.*,equipmenttype.* FROM `equipment` LEFT JOIN `equipmenttype` ON equipmenttype.etid = `equipment`.etid WHERE
-        <if test="ename != null and ename.length > 0">
-            equipment.ename LIKE #{ename}
-        </if>
+        SELECT `equipment`.*,equipmenttype.* FROM `equipment` LEFT JOIN `equipmenttype` ON equipmenttype.etid = `equipment`.etid
+
     </select>
 
 </mapper>

@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface EquipmentDao extends BaseMapper<Equipment> {
 
-    List<Equipment> findAll(String s);
+    List<Equipment> findAll();
 
     @Insert(value = {"insert into equipment values(0,#{name},#{etid},#{eprice},#{ecount})"})
     int add(String name, Integer etid, double eprice, Integer ecount);

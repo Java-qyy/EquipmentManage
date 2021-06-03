@@ -9,12 +9,14 @@ import com.hbsi.entity.Scrap;
 import com.hbsi.service.EquipmentService;
 import com.hbsi.service.RepairService;
 import com.hbsi.service.ScrapService;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,15 +39,11 @@ public class EquipmentController {
      * @return
      */
     @RequestMapping(value = "/equipment/all")
-    public Map<String,Object> findAll(@RequestBody Page page){
+    public Map<String,Object> findAll(@RequestBody Page page) throws SolrServerException, IOException {
 
-        List<Equipment> list = equipmentService.findAll(page);
-        PageInfo pageInfo = new PageInfo(list);
-        Map<String,Object> map = new HashMap<>();
-        map.put("msg","查询成功");
-        map.put("flag",true);
-        map.put("total",pageInfo.getTotal());
-        map.put("data",list);
+        Map<String,Object> map = equipmentService.findAll(page);
+
+
         return map;
     }
 

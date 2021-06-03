@@ -5,7 +5,6 @@ spring:
     password: root
     url: jdbc:mysql://127.0.0.1:3306/equipmentmanage?characterEncoding=utf-8
 
-
   redis:
     port: 6379
     host: localhost
@@ -19,6 +18,10 @@ spring:
     properties.mail.smtp.starttls.enable: true
     properties.mail.smtp.starttls.required: true
 
+
+  data:
+    solr:
+      host: http://127.0.0.1:8089/solr/collection1
 
 
 mybatis-plus:
