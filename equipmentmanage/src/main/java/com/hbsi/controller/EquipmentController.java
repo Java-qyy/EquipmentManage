@@ -57,10 +57,11 @@ public class EquipmentController {
      * @return
      */
     @RequestMapping(value = "/equipment/add")
-    public Map<String,Object> add(String name, Integer etid, double eprice, Integer ecount){
+    public Map<String,Object> add(String name, Integer etid, double eprice, Integer ecount) throws SolrServerException, IOException {
         Map<String,Object> map = new HashMap<>();
         int no = equipmentService.add(name,etid,eprice,ecount);
         if(no!=0){
+            equipmentService.create();
             map.put("msg","添加成功");
             map.put("flag",true);
             return map;
